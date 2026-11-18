@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Клининг Свежо</title>
+<meta name="description" content="Клининговая компания «Свежо»: поддерживающая и генеральная уборка, уборка после ремонта. Цена онлайн за 30 секунд.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: airy cool-white page; the hero is a drawn room you wipe clean with a slider; teal for action, lemon for one highlight. */
+:root {
+  --bg: #F1F6F7;
+  --surface: #FFFFFF;
+  --ink: #0E2A3A;
+  --muted: #557080;
+  --line: #D5E2E6;
+  --teal: #0F8B7E;
+  --on-teal: #FFFFFF;
+  --teal-soft: #DDF1EE;
+  --lemon: #F4D35E;
+  --on-lemon: #0E2A3A;
+  --deep: #0E2A3A;
+  --on-deep: #EAF3F5;
+  --on-deep-muted: #9DB6C1;
+  --font-display: "Rubik", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --radius: 20px;
+  --maxw: 1160px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0B1A22; --surface: #12242E; --ink: #E6F0F3; --muted: #95AEB9;
+    --line: #233945; --teal: #3CC2B2; --on-teal: #062520; --teal-soft: #143A38; --lemon: #F4D35E; --on-lemon: #0E2A3A;
+    --deep: #07131A; --on-deep: #E6F0F3; --on-deep-muted: #8DA6B1; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0B1A22; --surface: #12242E; --ink: #E6F0F3; --muted: #95AEB9;
+  --line: #233945; --teal: #3CC2B2; --on-teal: #062520; --teal-soft: #143A38; --lemon: #F4D35E; --on-lemon: #0E2A3A;
+  --deep: #07131A; --on-deep: #E6F0F3; --on-deep-muted: #8DA6B1; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+[hidden] { display: none !important; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.08; margin: 0; text-wrap: balance; letter-spacing: -0.02em; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 2.5px solid var(--teal); outline-offset: 3px; border-radius: 8px; }
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 720px) { .wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); } }
+.tag { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--teal); }
+.section { padding-block: 90px; }
+.section-head { display: grid; gap: 12px; margin-bottom: 42px; max-width: 660px; }
+.section-head h2 { font-size: clamp(30px, 4.4vw, 48px); }
+.section-head p { color: var(--muted); font-size: 17px; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; text-decoration: none;
+  font: 600 15px/1 var(--font-body); padding: 16px 24px; border-radius: 14px; border: 1.5px solid transparent;
+  transition: filter .2s ease, background .2s ease, color .2s ease, transform .15s ease; }
+.btn:active { transform: translateY(1px); }
+.btn-teal { background: var(--teal); color: var(--on-teal); }
+.btn-teal:hover { filter: brightness(1.08); }
+.btn-teal:disabled { opacity: .6; cursor: default; }
+.btn-line { border-color: var(--line); color: var(--ink); background: var(--surface); }
+.btn-line:hover { border-color: var(--ink); }
+
+/* Header */
+.header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 13px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-mark { width: 36px; height: 36px; border-radius: 11px; background: var(--teal); display: grid; place-items: center; }
+.logo-mark svg { width: 22px; height: 22px; color: var(--on-teal); }
+.logo b { font: 700 22px/1 var(--font-display); letter-spacing: -0.02em; }
+.nav { display: flex; gap: 26px; }
+.nav a { text-decoration: none; font-weight: 500; font-size: 15px; color: var(--muted); }
+.nav a:hover { color: var(--ink); }
+.header-right { display: flex; align-items: center; gap: 18px; }
+.header-phone { font-weight: 600; font-size: 15px; text-decoration: none; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.header .btn { padding: 12px 16px; font-size: 14px; }
+@media (max-width: 960px) { .nav { display: none; } }
+@media (max-width: 560px) { .header-phone { display: none; } }
+
+/* Hero */
+.hero { padding-block: 52px 80px; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); gap: 52px; align-items: center; }
+.hero-copy { display: grid; gap: 24px; min-width: 0; }
+.hero h1 { font-size: clamp(40px, 6vw, 74px); }
+.hero h1 mark { background: linear-gradient(transparent 58%, var(--lemon) 58% 92%, transparent 92%); color: inherit; padding: 0 .05em; }
+.hero-lead { font-size: clamp(17px, 1.6vw, 19px); color: var(--muted); max-width: 32em; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero-stats { display: flex; flex-wrap: wrap; gap: 12px 36px; padding-top: 22px; border-top: 1px solid var(--line); }
+.hero-stats b { display: block; font: 700 26px/1.1 var(--font-display); font-variant-numeric: tabular-nums; }
+.hero-stats span { font-size: 14px; color: var(--muted); }
+
+.room-card { background: var(--surface); border: 1px solid var(--line); border-radius: 26px; padding: 18px; display: grid; gap: 14px; min-width: 0; box-shadow: 0 30px 60px -40px rgba(14, 42, 58, .5); }
+.room { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 16 / 11; max-width: 100%; background: #E9F0F1; }
+.room svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.room-labels { position: absolute; inset: 12px 12px auto; display: flex; justify-content: space-between; pointer-events: none; }
+.room-labels span { background: rgba(14,42,58,.78); color: #fff; font-weight: 600; font-size: 12px; padding: 6px 10px; border-radius: 999px; letter-spacing: .04em; text-transform: uppercase; }
+.room-labels span:last-child { background: var(--lemon); color: var(--on-lemon); }
+.wipe-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.wipe-row input { width: 100%; accent-color: var(--teal); height: 26px; }
+@media (max-width: 880px) { .hero-grid { grid-template-columns: 1fr; gap: 36px; } }
+
+/* Checklist */
+.tabs { display: flex; gap: 6px; background: var(--surface); border: 1px solid var(--line); padding: 5px; border-radius: 14px; width: fit-content; max-width: 100%; overflow-x: auto; margin-bottom: 26px; }
+.tab { border: 0; background: transparent; color: var(--muted); font: 600 15px/1 var(--font-body); padding: 11px 18px; border-radius: 10px; cursor: pointer; white-space: nowrap; }
+.tab[aria-selected="true"] { background: var(--teal); color: var(--on-teal); }
+.check-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.check-col { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: grid; gap: 4px; align-content: start; }
+.check-col h3 { font-size: 19px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.check-col h3 small { font: 500 13px/1 var(--font-body); color: var(--muted); }
+.check-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.check-col li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; font-size: 15px; }
+.check-col li::before { content: ""; width: 18px; height: 18px; border-radius: 6px; margin-top: 2px; background: var(--teal-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230F8B7E' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center / 12px no-repeat; }
+.check-col li.off { color: var(--muted); }
+.check-col li.off::before { background: transparent; border: 1.5px dashed var(--line); }
+@media (max-width: 900px) { .check-grid { grid-template-columns: 1fr; } }
+
+/* Calculator */
+.calc-band { background: var(--deep); color: var(--on-deep); }
+.calc-band .section-head p { color: var(--on-deep-muted); }
+.calc-band .tag { color: var(--lemon); }
+.calc { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 30px; align-items: start; }
+.c-panel { display: grid; gap: 28px; min-width: 0; }
+.c-field { display: grid; gap: 12px; min-width: 0; }
+.c-label { display: flex; justify-content: space-between; gap: 12px; font-weight: 600; font-size: 15px; }
+.c-label span { color: var(--on-deep-muted); font-weight: 500; }
+.c-label output { font: 700 18px/1 var(--font-display); color: var(--on-deep); }
+input[type="range"].area { width: 100%; accent-color: var(--lemon); height: 28px; }
+.types { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.type { text-align: left; border: 1.5px solid color-mix(in srgb, var(--on-deep) 22%, transparent); background: transparent; color: var(--on-deep); border-radius: 14px; padding: 14px; cursor: pointer; display: grid; gap: 4px; font-family: var(--font-body); }
+.type b { font-size: 15px; }
+.type small { color: var(--on-deep-muted); font-size: 13px; }
+.type[aria-pressed="true"] { border-color: var(--lemon); background: color-mix(in srgb, var(--lemon) 14%, transparent); }
+.extras { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.ex { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 13px 14px; border-radius: 12px; cursor: pointer; border: 1.5px solid color-mix(in srgb, var(--on-deep) 18%, transparent); font-size: 15px; }
+.ex input { width: 18px; height: 18px; accent-color: var(--lemon); margin: 0; }
+.ex em { font-style: normal; color: var(--on-deep-muted); font-size: 14px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.ex:has(input:checked) { border-color: var(--lemon); }
+.dates { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
+.date { flex: 0 0 auto; display: grid; gap: 4px; min-width: 62px; padding: 10px 8px; text-align: center; border-radius: 14px; border: 1.5px solid color-mix(in srgb, var(--on-deep) 22%, transparent); background: transparent; color: var(--on-deep); cursor: pointer; font-family: var(--font-body); }
+.date small { font-size: 12px; font-weight: 600; color: var(--on-deep-muted); text-transform: uppercase; }
+.date b { font: 700 19px/1 var(--font-display); }
+.date[aria-pressed="true"] { background: var(--lemon); border-color: var(--lemon); color: var(--on-lemon); }
+.date[aria-pressed="true"] small { color: var(--on-lemon); opacity: .75; }
+.slots { display: flex; flex-wrap: wrap; gap: 8px; }
+.slot { border: 1.5px solid color-mix(in srgb, var(--on-deep) 22%, transparent); background: transparent; color: var(--on-deep); font: 600 15px/1 var(--font-body); padding: 12px 16px; border-radius: 12px; cursor: pointer; font-variant-numeric: tabular-nums; }
+.slot[aria-pressed="true"] { background: var(--lemon); border-color: var(--lemon); color: var(--on-lemon); }
+@media (max-width: 900px) { .calc { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .types, .extras { grid-template-columns: 1fr; } }
+
+.quote { background: var(--surface); color: var(--ink); border-radius: 24px; padding: 26px; display: grid; gap: 16px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 84px); }
+.quote h3 { font-size: 21px; }
+.team { display: flex; align-items: center; gap: 14px; background: var(--teal-soft); border-radius: 14px; padding: 14px; }
+.team-avatars { display: flex; }
+.team-avatars i { width: 34px; height: 34px; border-radius: 50%; background: var(--teal); border: 2.5px solid var(--teal-soft); margin-left: -10px; display: grid; place-items: center; }
+.team-avatars i:first-child { margin-left: 0; }
+.team-avatars i svg { width: 18px; height: 18px; color: var(--on-teal); }
+.team p { font-size: 14px; }
+.team b { display: block; font-size: 15px; }
+.q-lines { display: grid; }
+.q-line { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.q-line span:first-child { color: var(--muted); }
+.q-line span:last-child { font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+.q-total { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.q-total span { color: var(--muted); font-weight: 600; }
+.q-total b { font: 700 34px/1 var(--font-display); font-variant-numeric: tabular-nums; }
+.q-min { font-size: 13px; color: var(--muted); }
+.q-form { display: grid; gap: 10px; }
+.q-form input { width: 100%; font: 500 16px/1.2 var(--font-body); color: var(--ink); background: var(--bg); border: 1.5px solid var(--line); border-radius: 12px; padding: 14px; }
+.q-form input:focus { outline: none; border-color: var(--teal); }
+.q-form input.invalid { border-color: #D9534F; }
+.err { color: #D9534F; font-weight: 600; font-size: 14px; }
+.success { display: grid; gap: 8px; text-align: center; padding: 8px 0; }
+.success b { font: 700 21px/1.2 var(--font-display); }
+.success p { color: var(--muted); font-size: 15px; }
+@media (max-width: 900px) { .quote { position: static; } }
+@media (max-width: 420px) { .quote { padding: 20px 16px; } }
+
+/* Promises */
+.promises { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.promise { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: grid; gap: 10px; align-content: start; }
+.promise b { font: 700 36px/1 var(--font-display); color: var(--teal); }
+.promise strong { font-size: 17px; }
+.promise span { color: var(--muted); font-size: 15px; }
+@media (max-width: 960px) { .promises { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .promises { grid-template-columns: 1fr; } }
+
+/* Reviews */
+.reviews { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.review { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: grid; gap: 12px; align-content: start; }
+.stars { color: #E8B923; letter-spacing: 3px; }
+.review blockquote { margin: 0; font-size: 16px; }
+.review footer { color: var(--muted); font-size: 14px; }
+.review footer b { color: var(--ink); }
+@media (max-width: 860px) { .reviews { grid-template-columns: 1fr; } }
+
+/* Contacts */
+.cta { background: var(--teal); color: var(--on-teal); border-radius: 30px; padding: 48px; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 32px; align-items: center; }
+.cta h2 { font-size: clamp(28px, 3.8vw, 42px); }
+.cta p { opacity: .88; margin-top: 12px; }
+.cta dl { margin: 0; display: grid; gap: 12px; }
+.cta dl div { display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px solid color-mix(in srgb, var(--on-teal) 30%, transparent); padding-bottom: 10px; }
+.cta dt { opacity: .8; }
+.cta dd { margin: 0; font-weight: 600; text-align: right; }
+.cta-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.btn-white { background: var(--on-teal); color: var(--teal); }
+.btn-ghost-w { border-color: var(--on-teal); color: var(--on-teal); background: transparent; }
+@media (max-width: 860px) { .cta { grid-template-columns: 1fr; padding: 32px 22px; } }
+
+.footer { padding-block: 30px; color: var(--muted); font-size: 14px; }
+.footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+
+@keyframes twinkle { 0%, 100% { opacity: .2; transform: scale(.6); } 50% { opacity: 1; transform: scale(1); } }
+.sparkle { transform-box: fill-box; transform-origin: center; animation: twinkle 2.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .sparkle { animation: none; } .btn { transition: none; } }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="wrap">
+    <a class="logo" href="#top"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg></span><b>Свежо</b></a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#checklist">Что входит</a>
+      <a href="#calc">Цена</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <div class="header-right">
+      <a class="header-phone" href="tel:+79000000000">+7 900 000-00-00</a>
+      <a class="btn btn-teal" href="#calc">Заказать уборку</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="tag">Клининг квартир и домов</div>
+        <h1>Приходите домой, а&nbsp;там <mark>чисто</mark></h1>
+        <p class="hero-lead">Уборка квартир по чек-листу из 60 пунктов. Своя гипоаллергенная химия и инвентарь, клинеры с проверкой документов. Цену видно сразу, без замеров.</p>
+        <div class="hero-actions">
+          <a class="btn btn-teal" href="#calc">Рассчитать за 30 секунд</a>
+          <a class="btn btn-line" href="#checklist">Что входит в уборку</a>
+        </div>
+        <div class="hero-stats">
+          <div><b>от 2 990 ₽</b><span>уборка однушки</span></div>
+          <div><b>24 часа</b><span>перемоем бесплатно</span></div>
+          <div><b>с 8:00</b><span>до 22:00, без выходных</span></div>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room" id="room">
+          <svg viewBox="0 0 640 440" aria-hidden="true">
+            <defs>
+              <clipPath id="dirtClip"><rect id="dirtRect" x="320" y="0" width="320" height="440"/></clipPath>
+              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BFE3F2"/><stop offset="1" stop-color="#E8F6FB"/></linearGradient>
+            </defs>
+            <!-- clean room -->
+            <rect width="640" height="440" fill="#EEF3F2"/>
+            <rect y="320" width="640" height="120" fill="#D9C3A5"/>
+            <g stroke="#CDB291" stroke-width="2"><line x1="0" y1="350" x2="640" y2="350"/><line x1="0" y1="385" x2="640" y2="385"/><line x1="0" y1="420" x2="640" y2="420"/></g>
+            <rect x="380" y="54" width="180" height="170" rx="6" fill="url(#sky)" stroke="#FFFFFF" stroke-width="10"/>
+            <line x1="470" y1="54" x2="470" y2="224" stroke="#FFFFFF" stroke-width="8"/>
+            <rect x="80" y="80" width="150" height="100" rx="4" fill="#FFFFFF" stroke="#D5DFDF" stroke-width="2"/>
+            <path d="M95 165 l35 -40 l25 25 l20 -18 l40 33 z" fill="#8FC9BE"/><circle cx="195" cy="108" r="10" fill="#F4D35E"/>
+            <rect x="60" y="240" width="300" height="90" rx="22" fill="#5C8C99"/>
+            <rect x="80" y="210" width="260" height="60" rx="18" fill="#6E9DAA"/>
+            <rect x="70" y="326" width="14" height="22" rx="3" fill="#3D5D66"/><rect x="336" y="326" width="14" height="22" rx="3" fill="#3D5D66"/>
+            <rect x="110" y="222" width="70" height="44" rx="12" fill="#F4D35E"/>
+            <rect x="380" y="290" width="150" height="14" rx="5" fill="#8A6A4A"/>
+            <rect x="392" y="304" width="10" height="46" fill="#7A5C3F"/><rect x="508" y="304" width="10" height="46" fill="#7A5C3F"/>
+            <rect x="430" y="270" width="36" height="20" rx="4" fill="#FFFFFF" stroke="#D5DFDF"/>
+            <rect x="572" y="280" width="38" height="56" rx="6" fill="#E0E7E6"/>
+            <path d="M591 280 c-20 -30 -26 -70 0 -90 c26 20 20 60 0 90z" fill="#5FAE8F"/><path d="M591 282 c-34 -14 -46 -44 -36 -62 c22 4 34 30 36 62z" fill="#4B9A7C"/>
+            <g fill="#FFFFFF">
+              <path class="sparkle" d="M150 300 l4 10 l10 4 l-10 4 l-4 10 l-4 -10 l-10 -4 l10 -4z"/>
+              <path class="sparkle" style="animation-delay:.8s" d="M460 120 l3 8 l8 3 l-8 3 l-3 8 l-3 -8 l-8 -3 l8 -3z"/>
+              <path class="sparkle" style="animation-delay:1.5s" d="M250 370 l3 8 l8 3 l-8 3 l-3 8 l-3 -8 l-8 -3 l8 -3z"/>
+            </g>
+            <!-- dirty overlay -->
+            <g clip-path="url(#dirtClip)">
+              <rect width="640" height="440" fill="#B9A98F" opacity=".38"/>
+              <rect x="380" y="54" width="180" height="170" rx="6" fill="#9C8F78" opacity=".45"/>
+              <g fill="#8A7A62" opacity=".55">
+                <ellipse cx="420" cy="372" rx="40" ry="10"/><ellipse cx="560" cy="405" rx="55" ry="12"/><ellipse cx="250" cy="400" rx="46" ry="10"/>
+                <circle cx="410" cy="100" r="16"/><circle cx="520" cy="160" r="22"/><circle cx="440" cy="190" r="10"/>
+              </g>
+              <g stroke="#7A6A52" stroke-width="2" opacity=".5" fill="none">
+                <path d="M600 20 q10 30 -6 50 q-12 16 4 36"/><path d="M620 0 l-40 40 m10 0 l-26 26"/>
+              </g>
+              <g>
+                <path d="M450 395 q12 -14 26 -2 q-2 16 -18 12 z" fill="#F2F2F2" stroke="#BDBDBD"/>
+                <path d="M520 360 c8 -6 18 -2 22 6 c-6 8 -18 8 -22 -6z" fill="#E86A5B"/>
+                <rect x="440" y="266" width="22" height="26" rx="3" fill="#C9C0A8" transform="rotate(14 451 279)"/>
+                <path d="M372 260 q20 -14 36 4 l-6 10 q-14 -10 -26 0z" fill="#7C6A9C"/>
+                <rect x="586" y="330" width="34" height="8" rx="3" fill="#9E9E9E" transform="rotate(-20 603 334)"/>
+              </g>
+            </g>
+            <line id="wipeLine" x1="320" y1="0" x2="320" y2="440" stroke="#FFFFFF" stroke-width="4"/>
+            <g id="wipeKnob" transform="translate(320 220)"><circle r="20" fill="#FFFFFF" stroke="#0F8B7E" stroke-width="3"/><path d="M-7 -6 l-6 6 l6 6 M7 -6 l6 6 l-6 6" stroke="#0F8B7E" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          </svg>
+          <div class="room-labels"><span>После</span><span>До</span></div>
+        </div>
+        <label class="wipe-row" for="wipe"><span>Чисто</span><input type="range" id="wipe" min="0" max="100" value="50" aria-label="Сравнить до и после уборки"><span>Было</span></label>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="checklist" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="tag">Чек-лист</div>
+        <h2>Что входит в уборку</h2>
+        <p>Выберите тип уборки и посмотрите, что сделаем в каждой зоне. После уборки показываем результат по этому списку.</p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Тип уборки" id="checkTabs"></div>
+      <div class="check-grid" id="checkGrid"></div>
+    </div>
+  </section>
+
+  <section class="calc-band section" id="calc">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="tag">Расчёт цены</div>
+        <h2>Сколько стоит уборка</h2>
+        <p>Цена фиксированная: сколько посчитали здесь, столько и заплатите. Химия, инвентарь и дорога по городу уже включены.</p>
+      </div>
+      <div class="calc">
+        <div class="c-panel">
+          <div class="c-field">
+            <span class="c-label" id="typeLabel">Тип уборки</span>
+            <div class="types" id="types" role="group" aria-labelledby="typeLabel"></div>
+          </div>
+          <div class="c-field">
+            <label class="c-label" for="area">Площадь квартиры <output id="areaOut">54 м²</output></label>
+            <input type="range" class="area" id="area" min="20" max="200" step="2" value="54">
+          </div>
+          <div class="c-field">
+            <span class="c-label">Дополнительно</span>
+            <div class="extras" id="extras"></div>
+          </div>
+          <div class="c-field">
+            <span class="c-label" id="dateLabel">Дата</span>
+            <div class="dates" id="dates" role="group" aria-labelledby="dateLabel"></div>
+          </div>
+          <div class="c-field">
+            <span class="c-label" id="slotLabel">Время приезда</span>
+            <div class="slots" id="slots" role="group" aria-labelledby="slotLabel"></div>
+          </div>
+        </div>
+        <aside class="quote" aria-live="polite">
+          <h3 id="qTitle">Генеральная уборка</h3>
+          <div class="team">
+            <div class="team-avatars" id="teamAvatars"></div>
+            <p><b id="qTeam">2 клинера</b><span id="qTime">около 4 часов</span></p>
+          </div>
+          <div class="q-lines" id="qLines"></div>
+          <div class="q-total"><span>Итого</span><b id="qTotal">—</b></div>
+          <span class="q-min" id="qMin" hidden>Минимальный заказ 2 990 ₽</span>
+          <form class="q-form" id="orderForm" novalidate>
+            <div id="formFields" style="display:grid; gap:10px;">
+              <label for="name" style="display:contents"><span hidden>Имя</span><input type="text" id="name" autocomplete="given-name" placeholder="Ваше имя"></label>
+              <label for="phone" style="display:contents"><span hidden>Телефон</span><input type="tel" id="phone" autocomplete="tel" placeholder="+7 (___) ___-__-__"></label>
+              <p class="err" id="err" hidden></p>
+              <button class="btn btn-teal" type="submit">Заказать уборку</button>
+            </div>
+          </form>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head"><div class="tag">Гарантии</div><h2>Почему нам доверяют ключи</h2></div>
+      <div class="promises">
+        <div class="promise"><b>60</b><strong>пунктов чек-листа</strong><span>Старший клинер проверяет каждую зону перед сдачей.</span></div>
+        <div class="promise"><b>24 ч</b><strong>на претензию</strong><span>Если что-то не так, приедем и перемоем бесплатно.</span></div>
+        <div class="promise"><b>100%</b><strong>проверенные люди</strong><span>Паспорт, справка об отсутствии судимости, договор с каждым.</span></div>
+        <div class="promise"><b>0 ₽</b><strong>за химию</strong><span>Привозим своё: гипоаллергенные средства, безопасные для детей и животных.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="reviews" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="section-head"><div class="tag">Отзывы</div><h2>Что пишут после уборки</h2></div>
+      <div class="reviews">
+        <article class="review"><div class="stars" aria-label="5 из 5">★★★★★</div><blockquote>Заказывала генеральную перед приездом родителей. Отмыли даже духовку, которую я уже не надеялась спасти. Цена ровно как в калькуляторе.</blockquote><footer><b>Анастасия</b> · 2-комнатная, 58 м²</footer></article>
+        <article class="review"><div class="stars" aria-label="5 из 5">★★★★★</div><blockquote>После ремонта была строительная пыль везде. Приехали втроём, за день всё убрали, окна отмыли от краски.</blockquote><footer><b>Павел</b> · после ремонта, 74 м²</footer></article>
+        <article class="review"><div class="stars" aria-label="5 из 5">★★★★★</div><blockquote>Беру поддерживающую каждые две недели. Приходит одна и та же девушка, уже знает, что где лежит. Очень удобно.</blockquote><footer><b>Елена</b> · регулярная уборка</footer></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contacts" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="cta">
+        <div>
+          <h2>Нужна уборка уже завтра?</h2>
+          <p>Напишите в мессенджер площадь и тип уборки. Ответим за 10 минут и подберём время.</p>
+          <div class="cta-actions">
+            <a class="btn btn-white" href="https://wa.me/" target="_blank" rel="noopener">Написать в WhatsApp</a>
+            <a class="btn btn-ghost-w" href="https://t.me/" target="_blank" rel="noopener">Telegram</a>
+          </div>
+        </div>
+        <dl>
+          <div><dt>Телефон</dt><dd>+7 900 000-00-00</dd></div>
+          <div><dt>Работаем</dt><dd>Ежедневно 8:00–22:00</dd></div>
+          <div><dt>Выезд</dt><dd>По городу и до 20 км за город</dd></div>
+          <div><dt>Оплата</dt><dd>После уборки, картой или переводом</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <span>© 2026 Клининговая компания «Свежо»</span>
+    <span>Демо-сайт для портфолио: название, контакты и отзывы — пример</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const $ = id => document.getElementById(id);
+  const rub = n => Math.round(n).toLocaleString("ru-RU").replace(/ /g, " ") + " ₽";
+
+  // Before/after wipe
+  function setWipe(v) {
+    const x = 640 * v / 100;
+    $("dirtRect").setAttribute("x", x); $("dirtRect").setAttribute("width", 640 - x);
+    $("wipeLine").setAttribute("x1", x); $("wipeLine").setAttribute("x2", x);
+    $("wipeKnob").setAttribute("transform", `translate(${x} 220)`);
+  }
+  $("wipe").addEventListener("input", e => setWipe(+e.target.value));
+  setWipe(50);
+
+  const TYPES = [
+    { id: "keep", name: "Поддерживающая", note: "Раз в 1–2 недели", rate: 55, speed: 30 },
+    { id: "deep", name: "Генеральная", note: "Каждый угол и шкаф", rate: 110, speed: 14 },
+    { id: "reno", name: "После ремонта", note: "Пыль, краска, затирка", rate: 150, speed: 10 }
+  ];
+  const MIN = 2990;
+  const ZONES = [
+    { name: "Комнаты", items: [
+      ["Пыль со всех доступных поверхностей", "keep"], ["Пылесосим и моем полы", "keep"], ["Зеркала и стеклянные поверхности", "keep"],
+      ["Заправляем кровать", "keep"], ["Плинтусы, двери, выключатели", "deep"], ["Внутри шкафов и на шкафах", "deep"],
+      ["Батареи и подоконники", "deep"], ["Строительная пыль со стен и потолка", "reno"]
+    ]},
+    { name: "Кухня", items: [
+      ["Фасады и столешница", "keep"], ["Плита и раковина", "keep"], ["Выносим мусор", "keep"],
+      ["Фартук и вытяжка от жира", "deep"], ["Микроволновка внутри", "deep"], ["Внутри кухонных шкафов", "deep"],
+      ["Следы клея, краски и затирки", "reno"]
+    ]},
+    { name: "Санузел", items: [
+      ["Унитаз, раковина, ванна или душ", "keep"], ["Зеркала и смесители", "keep"], ["Полы", "keep"],
+      ["Плитка и швы от налёта", "deep"], ["Известковый налёт на стекле", "deep"], ["Сантехника от цемента и пены", "reno"]
+    ]}
+  ];
+  const EXTRAS = [
+    { id: "win", name: "Окна изнутри и снаружи", price: 1500 },
+    { id: "fridge", name: "Холодильник внутри", price: 800 },
+    { id: "oven", name: "Духовка внутри", price: 900 },
+    { id: "balcony", name: "Балкон", price: 700 },
+    { id: "iron", name: "Глажка, 1 час", price: 600 },
+    { id: "keys", name: "Забрать ключи", price: 400 }
+  ];
+  const level = { keep: 0, deep: 1, reno: 2 };
+  const SLOTS = ["8:00", "10:00", "12:00", "14:00", "16:00"];
+  const WD = ["вс","пн","вт","ср","чт","пт","сб"];
+  const MON = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"];
+  const days = Array.from({ length: 10 }, (_, i) => { const d = new Date(); d.setHours(0,0,0,0); d.setDate(d.getDate() + i + 1); return d; });
+  const state = { type: "deep", area: 54, extras: new Set(["fridge"]), day: 0, slot: "10:00", tab: "deep" };
+
+  // Checklist
+  $("checkTabs").innerHTML = TYPES.map(t => `<button type="button" class="tab" role="tab" data-tab="${t.id}">${t.name}</button>`).join("");
+  function renderChecklist() {
+    document.querySelectorAll("[data-tab]").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === state.tab));
+    const lv = level[state.tab];
+    $("checkGrid").innerHTML = ZONES.map(z => {
+      const done = z.items.filter(([, l]) => level[l] <= lv).length;
+      return `<div class="check-col"><h3>${z.name}<small>${done} из ${z.items.length}</small></h3><ul>${z.items.map(([txt, l]) => `<li class="${level[l] <= lv ? "" : "off"}">${txt}</li>`).join("")}</ul></div>`;
+    }).join("");
+  }
+
+  // Calculator
+  $("types").innerHTML = TYPES.map(t => `<button type="button" class="type" data-type="${t.id}"><b>${t.name}</b><small>${t.note} · ${t.rate} ₽/м²</small></button>`).join("");
+  $("extras").innerHTML = EXTRAS.map(x => `<label class="ex" for="x_${x.id}"><input type="checkbox" id="x_${x.id}" data-extra="${x.id}" ${state.extras.has(x.id) ? "checked" : ""}><span>${x.name}</span><em>+${rub(x.price)}</em></label>`).join("");
+  $("dates").innerHTML = days.map((d, i) => `<button type="button" class="date" data-day="${i}"><small>${i === 0 ? "завтра" : WD[d.getDay()]}</small><b>${d.getDate()}</b></button>`).join("");
+  $("slots").innerHTML = SLOTS.map(s => `<button type="button" class="slot" data-slot="${s}">${s}</button>`).join("");
+
+  function calc() {
+    const t = TYPES.find(x => x.id === state.type);
+    const base = state.area * t.rate;
+    const ex = EXTRAS.filter(x => state.extras.has(x.id));
+    const sum = base + ex.reduce((a, x) => a + x.price, 0);
+    const total = Math.max(MIN, sum);
+    const hoursTotal = state.area / t.speed + ex.length * 0.6;
+    const team = Math.min(4, Math.max(1, Math.ceil(hoursTotal / 5)));
+    const hours = Math.max(1.5, Math.round(hoursTotal / team * 2) / 2);
+    return { t, base, ex, total, belowMin: sum < MIN, team, hours };
+  }
+  const person = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7z"/></svg>`;
+  function plural(n, f) { const m10 = n % 10, m100 = n % 100; return m10 === 1 && m100 !== 11 ? f[0] : m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20) ? f[1] : f[2]; }
+  function render() {
+    const c = calc();
+    document.querySelectorAll("[data-type]").forEach(b => b.setAttribute("aria-pressed", b.dataset.type === state.type));
+    document.querySelectorAll("[data-day]").forEach(b => b.setAttribute("aria-pressed", +b.dataset.day === state.day));
+    document.querySelectorAll("[data-slot]").forEach(b => b.setAttribute("aria-pressed", b.dataset.slot === state.slot));
+    $("areaOut").textContent = state.area + " м²";
+    $("qTitle").textContent = c.t.name + " уборка";
+    if (c.t.id === "reno") $("qTitle").textContent = "Уборка после ремонта";
+    $("teamAvatars").innerHTML = Array.from({ length: c.team }, () => `<i>${person}</i>`).join("");
+    $("qTeam").textContent = `${c.team} ${plural(c.team, ["клинер", "клинера", "клинеров"])}`;
+    const h = c.hours.toString().replace(".", ",");
+    $("qTime").textContent = `около ${h} ${Number.isInteger(c.hours) ? plural(c.hours, ["часа", "часов", "часов"]) : "часа"}`;
+    const d = days[state.day];
+    $("qLines").innerHTML = [
+      [`${state.area} м² × ${c.t.rate} ₽`, rub(c.base)],
+      ...c.ex.map(x => [x.name, "+" + rub(x.price)]),
+      ["Когда", `${d.getDate()} ${MON[d.getMonth()]}, ${state.slot}`]
+    ].map(([a, b]) => `<div class="q-line"><span>${a}</span><span>${b}</span></div>`).join("");
+    $("qTotal").textContent = rub(c.total);
+    $("qMin").hidden = !c.belowMin;
+  }
+
+  $("area").addEventListener("input", e => { state.area = +e.target.value; render(); });
+  $("extras").addEventListener("change", e => { const id = e.target.dataset.extra; if (!id) return; e.target.checked ? state.extras.add(id) : state.extras.delete(id); render(); });
+  document.addEventListener("click", e => {
+    const tb = e.target.closest("[data-tab]"); if (tb) { state.tab = tb.dataset.tab; renderChecklist(); return; }
+    const ty = e.target.closest("[data-type]"); if (ty) { state.type = ty.dataset.type; state.tab = state.type; renderChecklist(); render(); return; }
+    const dy = e.target.closest("[data-day]"); if (dy) { state.day = +dy.dataset.day; render(); return; }
+    const sl = e.target.closest("[data-slot]"); if (sl) { state.slot = sl.dataset.slot; render(); }
+  });
+
+  $("phone").addEventListener("input", e => {
+    let d = e.target.value.replace(/\D/g, "");
+    if (d.startsWith("8")) d = "7" + d.slice(1);
+    if (!d.startsWith("7")) d = "7" + d;
+    const p = d.slice(1, 11);
+    let out = "+7";
+    if (p.length) out += " (" + p.slice(0, 3);
+    if (p.length >= 3) out += ")";
+    if (p.length > 3) out += " " + p.slice(3, 6);
+    if (p.length > 6) out += "-" + p.slice(6, 8);
+    if (p.length > 8) out += "-" + p.slice(8, 10);
+    e.target.value = out; e.target.classList.remove("invalid");
+  });
+  $("name").addEventListener("input", e => e.target.classList.remove("invalid"));
+  $("orderForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const name = $("name").value.trim(), digits = $("phone").value.replace(/\D/g, "");
+    let msg = "";
+    if (!name) { msg = "Укажите имя."; $("name").classList.add("invalid"); }
+    else if (digits.length < 11) { msg = "Проверьте номер: нужно 10 цифр после +7."; $("phone").classList.add("invalid"); }
+    if (msg) { $("err").textContent = msg; $("err").hidden = false; return; }
+    const c = calc(), d = days[state.day];
+    $("formFields").innerHTML = `<div class="success"><b>${name}, заказ принят</b><p>${$("qTitle").textContent}, ${state.area} м² · ${d.getDate()} ${MON[d.getMonth()]} в ${state.slot} · ${rub(c.total)}. Менеджер позвонит на ${$("phone").value} для подтверждения.</p></div>`;
+  });
+
+  renderChecklist(); render();
+})();
+</script>
+</body>
+</html>
